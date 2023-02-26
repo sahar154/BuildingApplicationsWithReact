@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 class CoursesPage extends React.Component {
   state = {
@@ -31,5 +32,11 @@ class CoursesPage extends React.Component {
     );
   }
 }
+function mapStateToProps(state, ownProps) {
+  return {
+      courses: state.courses
+  };
+}
+const connectedStateAndProps = connect(mapStateToProps, mapDispatchToProps);
 
-export default CoursesPage;
+export default connectedStateAndProps(CoursesPage);
