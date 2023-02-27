@@ -54,7 +54,8 @@ CoursesPage.propTypes = {
 function mapStateToProps(state) {
   let x = state.courses;
   return {
-    courses: state.courses,
+    //courses: state.courses,
+    courses: x,
   };
 }
 // 2
