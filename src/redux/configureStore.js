@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose } from "redux";
-import rootReducer from "../../redux1/actions/reducers";
+import rootReducer from "../redux/reducers/courseReducer";
 import reduxImmutableStateVariant from "redux-immutable-state-invariant";
 
 export default function configreStore(initilaState) {
