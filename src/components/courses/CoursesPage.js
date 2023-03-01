@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import * as courseAction from "../../redux/actions/courseActions";
 // 6
 import propTypes from "prop-types";
+
 class CoursesPage extends React.Component {
   state = {
     course: {
@@ -16,15 +17,10 @@ class CoursesPage extends React.Component {
     this.setState({ course: course });
   };
 
-  // handleSubmit = () => {
-  //   // 5
-  //   this.props.dispatch(courseAction.createCourse(this.state.course));
-  //   alert(this.state.course.title);
-  // };
-
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.dispatch(courseAction.createCourse(this.state.course));
+    //this.props.dispatch(courseAction.createCourse(this.state.course));
+    this.props.createCourse(this.state.course);
   };
 
   render() {
@@ -38,9 +34,9 @@ class CoursesPage extends React.Component {
           value={this.state.course.title}
         ></input>
         <input type="submit" value="Save"></input>
-        {/* {this.props.courses.map((course) => (
+        {this.props.courses.map((course) => (
           <div key={course.title}>{course.title}</div>
-        ))}  */}
+        ))}
       </form>
     );
   }
@@ -48,7 +44,8 @@ class CoursesPage extends React.Component {
 
 CoursesPage.propTypes = {
   courses: propTypes.array.isRequired,
-  dispatch: propTypes.func.isRequired,
+  //dispatch: propTypes.func.isRequired,
+  createCourse: propTypes.func.isRequired,
 };
 // 3
 function mapStateToProps(state) {
@@ -58,6 +55,13 @@ function mapStateToProps(state) {
     courses: x,
   };
 }
+function mapDispatchToProps(dispatch) {
+  return {
+    //createCourse: (course) => dispatch(courseAction.createCourse(course)),
+    createCourse: (course) => dispatch(courseAction.createCourse(course)),
+  };
+}
+
 // 2
-const connectedStateAndProps = connect(mapStateToProps);
+const connectedStateAndProps = connect(mapStateToProps, mapDispatchToProps);
 export default connectedStateAndProps(CoursesPage);
