@@ -2,7 +2,10 @@
   "name": "ps-redux",
   "description": "React and Redux Pluralsight course by Cory House",
   "scripts": {
-    "start": "webpack serve --config webpack.config.dev.js --port 3000"
+    "start": "run-p start:dev start:api",
+    "start:dev": "webpack serve --config webpack.config.dev.js --port 3000",
+    "prestart:api": "node tools/createMockDb.js",
+    "start:api": "node tools/apiServer.js"
   },
   "dependencies": {
     "bootstrap": "5.0.2",
@@ -68,7 +71,7 @@
     ],
     "parser": "babel-eslint",
     "parserOptions": {
-      "ecmaVersion": 2018, 
+      "ecmaVersion": 2018,
       "sourceType": "module",
       "ecmaFeatures": {
         "jsx": true
