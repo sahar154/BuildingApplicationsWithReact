@@ -5,41 +5,50 @@ import * as courseAction from "../../redux/actions/courseActions";
 // 6
 import propTypes from "prop-types";
 import { bindActionCreators } from "redux";
+import CourseList from "./CourseList";
 
 class CoursesPage extends React.Component {
-  state = {
-    course: {
-      title: "",
-    },
-  };
+  // state = {
+  //   course: {
+  //     title: "",
+  //   },
+  // };
 
-  handleChange = (event) => {
-    const course = { ...this.state.course, title: event.target.value };
-    this.setState({ course: course });
-  };
+  // handleChange = (event) => {
+  //   const course = { ...this.state.course, title: event.target.value };
+  //   this.setState({ course: course });
+  // };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    //this.props.dispatch(courseAction.createCourse(this.state.course));
-    //this.props.createCourse(this.state.course);
-    this.props.actions.createCourse(this.state.course);
-  };
+  // handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   //this.props.dispatch(courseAction.createCourse(this.state.course));
+  //   //this.props.createCourse(this.state.course);
+  //   this.props.actions.createCourse(this.state.course);
+  // };
+  componentDidMount() {
+    this.props.actions.loadCourses().catch((error) => {
+      alert("loading courses failed" + error);
+    });
+  }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <h2>Courses</h2>
+      // <form onSubmit={this.handleSubmit}>
+      //   <h2>Courses</h2>
+      <>
         <h3>Add course</h3>
-        <input
+        <CourseList courses={this.props.courses} />
+        {/* <input
           type="text"
           onChange={this.handleChange}
           value={this.state.course.title}
         ></input>
-        <input type="submit" value="Save"></input>
-        {this.props.courses.map((course) => (
+        <input type="submit" value="Save"></input> */}
+        {/* {this.props.courses.map((course) => (
           <div key={course.title}>{course.title}</div>
-        ))}
-      </form>
+        ))} */}
+      </>
+      // </form>
     );
   }
 }

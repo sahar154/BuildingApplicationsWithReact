@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "./reducers/mainReducer";
 import reduxImmutableStateVariant from "redux-immutable-state-invariant";
+import thunk from 'redux-thunk';
 
 export default function configreStore(initialState) {
   // add support for redux devtool
@@ -9,6 +10,6 @@ export default function configreStore(initialState) {
   return createStore(
     rootReducer,
     initialState,
-    composeEnhancer(applyMiddleware(reduxImmutableStateVariant()))
+    composeEnhancer(applyMiddleware(thunk,reduxImmutableStateVariant()))
   );
 }
