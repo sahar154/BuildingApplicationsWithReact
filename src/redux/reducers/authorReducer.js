@@ -1,17 +1,14 @@
 import * as types from "../actions/actionTypes";
 import storeInitialStae from "./StoreInitialStae";
 
-export default function courseReducer(
-  state = storeInitialStae.courses,
+export default function authorReducer(
+  //state = [],
+  state = storeInitialStae.authors,
   action
 ) {
   switch (action.type) {
-    case types.CREATE_COURSE: {
-      let res = [...state, { ...action.course }];
-      return res;
-    }
-    case types.LOAD_COURSES_SUCCESS: {
-      return action.courses;
+    case types.LOAD_AUTHORS_SUCCESS: {
+      return action.authors;
     }
     // if an unknown action will be pass the current state will return
     default:
