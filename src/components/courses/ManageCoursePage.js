@@ -1,35 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import * as courseAction from "../../redux/actions/courseActions";
 import * as authorAction from "../../redux/actions/authorActions";
 import propTypes from "prop-types";
 //import { bindActionCreators } from "redux";
 
-class ManageCoursePage extends React.Component {
-  componentDidMount() {
-    // shortcut instead od writing this.props.loadAuthors
-    // 4
-    const { courses, loadAuthors } = this.props;
+function ManageCoursePage({ courses, authors, loadAuthors, loadCourses }) {
+  //const { courses,authors, loadAuthors,loadCourses } = this.props;
 
+  useEffect(() => {
     if (courses.length === 0)
-      this.props.loadCourses().catch((error) => {
+      loadCourses().catch((error) => {
+        //this.props.loadCourses().catch((error) => {
         alert("loading courses failed" + error);
       });
-    if (this.props.authors.length === 0)
+    if (authors.length === 0)
+      //if (this.props.authors.length === 0)
       // 4
       // instead of this.props.loadAuthors
       loadAuthors().catch((error) => {
         alert("loading authors failed" + error);
       });
-  }
+  },[]);
 
-  render() {
-    return (
-      <>
-        <h3>Manage course</h3>
-      </>
-    );
-  }
+  return (
+    <>
+      <h3>Manage course</h3>
+    </>
+  );
 }
 
 ManageCoursePage.propTypes = {
