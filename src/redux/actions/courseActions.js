@@ -22,3 +22,18 @@ export function loadCourses() {
       });
   };
 }
+
+export function saveCourses() {
+  return function (dispatch) {
+    return courseApiThunk
+      .saveCourse()
+      .then((savedCourse) => {
+        course.id
+          ? dispatch(updateCoursesSuccess(courses))
+          : dispatch(createCoursesSuccess(courses));
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
+}

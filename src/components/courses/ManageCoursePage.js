@@ -22,6 +22,7 @@ function ManageCoursePage({
   useEffect(() => {
     if (courses.length === 0)
       loadCourses().catch((error) => {
+        setError("loading courses failed" + error);
         //this.props.loadCourses().catch((error) => {
         alert("loading courses failed" + error);
       });
@@ -30,6 +31,7 @@ function ManageCoursePage({
       // 4
       // instead of this.props.loadAuthors
       loadAuthors().catch((error) => {
+        setError("loading authors failed" + error);
         alert("loading authors failed" + error);
       });
   }, []);
@@ -43,7 +45,12 @@ function ManageCoursePage({
   }
   return (
     <>
-      <CourseForm course={course} errors={errors} authors={authors} />
+      <CourseForm
+        course={course}
+        errors={errors}
+        authors={authors}
+        onChange={handleChange}
+      />
     </>
   );
 }
