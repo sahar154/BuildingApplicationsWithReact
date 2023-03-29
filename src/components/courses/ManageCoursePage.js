@@ -12,6 +12,7 @@ function ManageCoursePage({
   authors,
   loadAuthors,
   loadCourses,
+  saveCourse,
   ...props
 }) {
   //const { courses,authors, loadAuthors,loadCourses } = this.props;
@@ -36,6 +37,11 @@ function ManageCoursePage({
       });
   }, []);
 
+  function handleSave(event) {
+    event.preventDefualt();
+    saveCourse(course);
+  }
+
   function handleChange(event) {
     const { name, value } = event.target;
     setCourse((prevCourse) => ({
@@ -50,6 +56,7 @@ function ManageCoursePage({
         errors={errors}
         authors={authors}
         onChange={handleChange}
+        onSave={handleSave}
       />
     </>
   );
@@ -62,6 +69,7 @@ ManageCoursePage.propTypes = {
   //actions: propTypes.object.isRequired,
   loadCourses: propTypes.func.isRequired,
   loadAuthors: propTypes.func.isRequired,
+  saveCourse: propTypes.func.isRequired,
 };
 // 3
 function mapStateToProps(state) {
@@ -83,6 +91,7 @@ function mapDispatchToProps(objToDispatch) {
 */
 const mapDispatchToProps = {
   loadCourses: courseAction.loadCourses,
+  saveCourse: courseAction.saveCourse,
   loadAuthors: authorAction.loadAuthors,
 };
 

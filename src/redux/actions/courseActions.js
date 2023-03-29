@@ -2,12 +2,19 @@ import * as types from "./actionTypes";
 import * as courseApiThunk from "../../api/courseApi";
 
 // the action creator from create course
-export function createCourse(course) {
-  return { type: types.CREATE_COURSE, course: course };
-}
+// export function createCourse(course) {
+//   return { type: types.CREATE_COURSE, course: course };
+// }
 
 export function loadCoursesSuccess(courses) {
   return { type: types.LOAD_COURSES_SUCCESS, courses: courses };
+}
+
+export function createCoursesSuccess(course) {
+  return { type: types.CREATE_COURSE_SUCCESS, courses: course };
+}
+export function updateCoursesSuccess(course) {
+  return { type: types.UPDATE_COURSE_SUCCESS, courses: course };
 }
 
 export function loadCourses() {
@@ -23,14 +30,14 @@ export function loadCourses() {
   };
 }
 
-export function saveCourses() {
+export function saveCourse() {
   return function (dispatch) {
     return courseApiThunk
       .saveCourse()
       .then((savedCourse) => {
-        course.id
-          ? dispatch(updateCoursesSuccess(courses))
-          : dispatch(createCoursesSuccess(courses));
+        savedCourse.id
+          ? dispatch(updateCoursesSuccess(savedCourse))
+          : dispatch(createCoursesSuccess(savedCourse));
       })
       .catch((error) => {
         throw error;

@@ -6,9 +6,14 @@ export default function courseReducer(
   action
 ) {
   switch (action.type) {
-    case types.CREATE_COURSE: {
+    case types.CREATE_COURSE_SUCCESS: {
       let res = [...state, { ...action.course }];
       return res;
+    }
+    case types.UPDATE_COURSE_SUCCESS: {
+      return state.map((course) =>
+        course.id === action.course.id ? action.course : course
+      );
     }
     case types.LOAD_COURSES_SUCCESS: {
       return action.courses;
