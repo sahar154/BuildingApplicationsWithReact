@@ -5,8 +5,11 @@ export default function courseReducer(
   state = storeInitialStae.courses,
   action
 ) {
+  console.log("in switch");
+  console.log("action.type=" + action.type);
   switch (action.type) {
     case types.CREATE_COURSE_SUCCESS: {
+      console.log("CREATE_COURSE_SUCCESS");
       let res = [...state, { ...action.course }];
       return res;
     }

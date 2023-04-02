@@ -13,6 +13,7 @@ function ManageCoursePage({
   loadAuthors,
   loadCourses,
   saveCourse,
+  history,
   ...props
 }) {
   //const { courses,authors, loadAuthors,loadCourses } = this.props;
@@ -21,12 +22,16 @@ function ManageCoursePage({
   const [errors, setError] = useState({});
 
   useEffect(() => {
-    if (courses.length === 0)
+    if (courses.length === 0) {
       loadCourses().catch((error) => {
         setError("loading courses failed" + error);
         //this.props.loadCourses().catch((error) => {
         alert("loading courses failed" + error);
       });
+    } else {
+      setCourse({ ...props.course });
+    }
+
     if (authors.length === 0)
       //if (this.props.authors.length === 0)
       // 4
@@ -35,11 +40,19 @@ function ManageCoursePage({
         setError("loading authors failed" + error);
         alert("loading authors failed" + error);
       });
-  }, []);
+  }, [props.course]);
 
-  function handleSave(event) {
-    event.preventDefualt();
-    saveCourse(course);
+  //function handleSave(event) {
+  function handleSave() {
+    //event.preventDefualt();
+    saveCourse(course)
+      .then(() => {
+        alert("before history");
+        history.push("/courses");
+      })
+      .catch(() => {
+        console.log("IN CATCH");
+      });
   }
 
   function handleChange(event) {
@@ -63,6 +76,7 @@ function ManageCoursePage({
 }
 
 ManageCoursePage.propTypes = {
+  history: propTypes.object.isRequired,
   course: propTypes.object.isRequired,
   courses: propTypes.array.isRequired,
   authors: propTypes.array.isRequired,

@@ -10,10 +10,12 @@ export function loadCoursesSuccess(courses) {
   return { type: types.LOAD_COURSES_SUCCESS, courses: courses };
 }
 
-export function createCoursesSuccess(course) {
+export function createCourseSuccess(course) {
+  alert(1);
   return { type: types.CREATE_COURSE_SUCCESS, courses: course };
 }
-export function updateCoursesSuccess(course) {
+export function updateCourseSuccess(course) {
+  alert(2);
   return { type: types.UPDATE_COURSE_SUCCESS, courses: course };
 }
 
@@ -30,16 +32,20 @@ export function loadCourses() {
   };
 }
 
-export function saveCourse() {
+export function saveCourse(course) {
   return function (dispatch) {
     return courseApiThunk
-      .saveCourse()
+      .saveCourse(course)
       .then((savedCourse) => {
-        savedCourse.id
-          ? dispatch(updateCoursesSuccess(savedCourse))
-          : dispatch(createCoursesSuccess(savedCourse));
+        console.log("66");
+        //alert(66);
+        //alert(savedCourse.title);
+        course.id
+          ? dispatch(updateCourseSuccess(savedCourse))
+          : dispatch(createCourseSuccess(savedCourse));
       })
       .catch((error) => {
+        alert("error=" + error);
         throw error;
       });
   };
