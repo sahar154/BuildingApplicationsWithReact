@@ -11,11 +11,11 @@ export function loadCoursesSuccess(courses) {
 }
 
 export function createCourseSuccess(course) {
-  alert(1);
+  //alert(1);
   return { type: types.CREATE_COURSE_SUCCESS, courses: course };
 }
 export function updateCourseSuccess(course) {
-  alert(2);
+  //alert(2);
   return { type: types.UPDATE_COURSE_SUCCESS, courses: course };
 }
 

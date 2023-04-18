@@ -19,12 +19,12 @@ function ManageCoursePage({
   //const { courses,authors, loadAuthors,loadCourses } = this.props;
 
   const [course, setCourse] = useState({ ...props.course });
-  const [errors, setError] = useState({});
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     if (courses.length === 0) {
       loadCourses().catch((error) => {
-        setError("loading courses failed" + error);
+        //setError("loading courses failed" + error);
         //this.props.loadCourses().catch((error) => {
         alert("loading courses failed" + error);
       });
@@ -37,23 +37,10 @@ function ManageCoursePage({
       // 4
       // instead of this.props.loadAuthors
       loadAuthors().catch((error) => {
-        setError("loading authors failed" + error);
+        //setError("loading authors failed" + error);
         alert("loading authors failed" + error);
       });
   }, [props.course]);
-
-  //function handleSave(event) {
-  function handleSave() {
-    //event.preventDefualt();
-    saveCourse(course)
-      .then(() => {
-        alert("before history");
-        history.push("/courses");
-      })
-      .catch(() => {
-        console.log("IN CATCH");
-      });
-  }
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -62,6 +49,20 @@ function ManageCoursePage({
       [name]: name === "authorId" ? parseInt(value, 10) : value,
     }));
   }
+
+  function handleSave(event) {
+    event.preventDefault();
+
+    saveCourse(course)
+      .then(() => {
+        history.push("/courses");
+      })
+      .catch((err) => {
+        alert("IN CATCH" + err);
+        console.log("IN CATCH");
+      });
+  }
+
   return (
     <>
       <CourseForm
@@ -76,14 +77,14 @@ function ManageCoursePage({
 }
 
 ManageCoursePage.propTypes = {
-  history: propTypes.object.isRequired,
   course: propTypes.object.isRequired,
-  courses: propTypes.array.isRequired,
   authors: propTypes.array.isRequired,
+  courses: propTypes.array.isRequired,
   //actions: propTypes.object.isRequired,
   loadCourses: propTypes.func.isRequired,
   loadAuthors: propTypes.func.isRequired,
   saveCourse: propTypes.func.isRequired,
+  history: propTypes.object.isRequired,
 };
 // 3
 function mapStateToProps(state) {
