@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const Header = () => {
   const activeStyle = { color: "#F15B2A" };
   return (
-    // <HashRouter>
+    //<HashRouter>
     <nav>
       <NavLink to="/" activeStyle={activeStyle} exact>
         Home
@@ -19,7 +19,7 @@ const Header = () => {
         About
       </NavLink>
     </nav>
-    // </HashRouter>
+    //</HashRouter>
   );
 };
 
