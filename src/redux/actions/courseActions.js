@@ -12,11 +12,11 @@ export function loadCoursesSuccess(courses) {
 
 export function createCourseSuccess(course) {
   //alert(1);
-  return { type: types.CREATE_COURSE_SUCCESS, courses: course };
+  return { type: types.CREATE_COURSE_SUCCESS, course: course };
 }
 export function updateCourseSuccess(course) {
   //alert(2);
-  return { type: types.UPDATE_COURSE_SUCCESS, courses: course };
+  return { type: types.UPDATE_COURSE_SUCCESS, course: course };
 }
 
 export function loadCourses() {

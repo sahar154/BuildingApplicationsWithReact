@@ -16,7 +16,6 @@ export function saveCourse(course) {
     body: JSON.stringify(course),
   })
     .then(() => {
-      alert(99);
       //handleResponse;
     })
     .catch((err) => {

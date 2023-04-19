@@ -74,23 +74,6 @@ function mapStateToProps1(state) {
 }
 
 function mapStateToProps(state) {
-  if (state.authors != undefined) {
-    let authIds = "";
-    state.authors.forEach((element) => {
-      authIds += element.id + ",";
-    });
-    console.log(authIds);
-    //alert(authIds);
-  }
-  if (state.courses != undefined) {
-    let coursesIds = "";
-    state.courses.forEach((element) => {
-      coursesIds += element.authorId + ",";
-    });
-    console.log(coursesIds);
-    alert(coursesIds);
-  }
-
   return {
     courses:
       state.authors.length === 0

@@ -4,7 +4,7 @@ import * as courseAction from "../../redux/actions/courseActions";
 import * as authorAction from "../../redux/actions/authorActions";
 import propTypes from "prop-types";
 import CourseForm from "./CourseForm";
-import { newCourse } from "../../../tools/mockData";
+//import { newCourse } from "../../../tools/mockData";
 //import { bindActionCreators } from "redux";
 
 function ManageCoursePage({
@@ -89,7 +89,7 @@ ManageCoursePage.propTypes = {
 // 3
 function mapStateToProps(state) {
   return {
-    course: newCourse,
+    course: state.curCourse,
     courses: state.courses,
     authors: state.authors,
   };
