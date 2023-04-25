@@ -7,8 +7,8 @@ const CourseForm = ({
   authors,
   onSave,
   onChange,
-  saving = false,
-  errors = {}
+  isSaving = false,
+  errors = {},
 }) => {
   return (
     <form onSubmit={onSave}>
@@ -31,9 +31,9 @@ const CourseForm = ({
         label="Author"
         value={course.authorId || ""}
         defaultOption="Select Author"
-      options={authors.map(author => ({
+        options={authors.map((author) => ({
           value: author.id,
-          text: author.name
+          text: author.name,
         }))}
         onChange={onChange}
         error={errors.author}
@@ -47,8 +47,8 @@ const CourseForm = ({
         error={errors.category}
       />
 
-      <button type="submit" disabled={saving} className="btn btn-primary">
-        {saving ? "Saving..." : "Save"}
+      <button type="submit" disabled={isSaving} className="btn btn-primary">
+        {isSaving ? "Saving..." : "Save"}
       </button>
     </form>
   );
@@ -60,7 +60,7 @@ CourseForm.propTypes = {
   errors: PropTypes.object,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  saving: PropTypes.bool
+  isSaving: PropTypes.bool,
 };
 
 export default CourseForm;
