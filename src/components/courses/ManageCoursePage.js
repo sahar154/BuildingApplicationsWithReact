@@ -69,7 +69,7 @@ export function ManageCoursePage({
 
   function handleSave(event) {
     event.preventDefault();
-    //if (!formIsValid()) return;
+    if (!formIsValid()) return;
     setSavingState(true);
     saveCourse(curCourseWithAuthors)
       .then(() => {
