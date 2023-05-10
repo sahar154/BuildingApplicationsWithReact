@@ -29,6 +29,9 @@ node_modules
 # Build folder
 build
 
+# BuildDev folder
+buildDev
+
 # Webstorm metadata
 .idea
 

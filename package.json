@@ -12,7 +12,10 @@
     "prebuild": "run-p clean:build test:ci",
     "build": "webpack --config webpack.config.prod.js",
     "postbuild": "run-p start:api serve:build",
-    "serve:build": "http-server ./build"
+    "serve:build": "http-server ./build",
+    "clean:buildDev": "rimraf ./buildDev && mkdir buildDev",
+    "prebuildDev": "run-p clean:buildDev test:ci",
+    "buildDev": "webpack --config webpack.config.dev.js"
   },
   "jest": {
     "setupFiles": [
